@@ -33,12 +33,13 @@ end
 
 group :development, :test do
 	gem 'sqlite3'
-	gem 'rspec-rails' 
+	gem 'rspec-rails'
 end
 
 group :test do
 	gem 'selenium-webdriver'
 	gem 'capybara'
+  gem 'factory_girl_rails', '4.2.0'
 end
 
 # Use ActiveModel has_secure_password
