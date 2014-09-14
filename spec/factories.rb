@@ -5,4 +5,10 @@ FactoryGirl.define do
     password "123456"
     password_confirmation "123456"
   end
+
+  factory :post do
+    content "Hello there this is a post's content"
+    title "title of post"
+    user
+  end
 end

@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <%= gravatar_for @user %>
+<a href="http://gravatar.com/emails">change</a>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -12,10 +13,12 @@
   <%= @user.email %>
 </p>
 
-<!-- <p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
- -->
+<% if @user.posts.any? %>
+  <h3>Posts (<%= @user.posts.count %>)</h3>
+  <ol class="posts">
+    <%= render @posts %>
+  </ol>
+<% end %>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

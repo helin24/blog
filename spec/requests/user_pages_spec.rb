@@ -5,10 +5,18 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:p1) { FactoryGirl.create(:post, user: user, content: "something") }
+    let!(:p2) { FactoryGirl.create(:post, user: user, content: "something else") }
     before { visit user_path(user) }
 
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe "posts" do
+      it { should have_content(p1.content) }
+      it { should have_content(p2.content) }
+      it { should have_content(user.posts.count) }
+    end
   end
 
   describe "signup page" do
@@ -42,4 +50,22 @@ describe "User pages" do
       end
     end
   end
+
+  describe "edit" do
+    let(:user) { FactoryGirl.create(:user) }
+    before { visit edit_user_path(user) }
+
+    describe "page" do
+      it { should have_content("Update your profile") }
+      it { should have_title("Edit user") }
+      it { should have_link('change', href: 'http://gravatar.com/emails') }
+    end
+
+    describe "with invalid information" do
+      before { click_button "Update User" }
+
+      it { should have_content('error') }
+    end
+  end
+
 end
