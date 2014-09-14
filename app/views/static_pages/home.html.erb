@@ -1,5 +1,10 @@
 <% provide(:title, 'Home') %>
 <h1>Blog</h1>
 <p>Home page for blog sample application</p>
+
+<% if signed_in? %>
+<%= render '/shared/post_form' %>
+<% end %>
+
 <%= link_to "Sign in", signin_path %>
 <%= link_to "Sign up", signup_path %>

@@ -1,0 +1,6 @@
+<%= form_for(@post) do |f| %>
+  <%= f.text_area :title, placeholder: "Title" %>
+  <%= f.text_area :content, placeholder: "Compose new post" %>
+  <%= f.submit "Post" %>
+
+<% end %>
